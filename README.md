@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+Create application
+    ng new mono-workspace --create-application=false
+    cd mono-workspace
+    ng g application container-app --routing --style=scss
+    ng g application insurance-details --routing --style=scss
+    ng g application premium-payment --routing --style=scss
+
+To run the applications
+    ng s container-app -o
+    ng s insurance-details -o
+    ng s premium-payment -o
+
+Adding Module federation to each application
+    Note - Our angular version is 16 so thats why we are using module-federation version 16
+    ng add @angular-architects/module-federation@16.0.4 --project container-app --port 4200
+    ng add @angular-architects/module-federation@16.0.4 --project insurance-details --port 4201
+    ng add @angular-architects/module-federation@16.0.4 --project premium-payment --port 4202
