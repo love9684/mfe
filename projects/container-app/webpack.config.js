@@ -11,7 +11,8 @@ sharedMappings.register(
 module.exports = {
   output: {
     uniqueName: "containerApp",
-    publicPath: "auto"
+    publicPath: "auto",
+    scriptType: "text/javascript"
   },
   optimization: {
     runtimeChunk: false
@@ -26,21 +27,21 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-        library: { type: "module" },
+        // No need for now
+        // library: { type: "module" },
 
         // For remotes (please adjust)
-        // name: "containerApp",
+        name: "containerApp",
         // filename: "remoteEntry.js",
         // exposes: {
         //     './Component': './projects/container-app/src/app/app.component.ts',
         // },        
         
         // For hosts (please adjust)
-        // remotes: {
-        //     "insuranceDetails": "http://localhost:4200/remoteEntry.js",
-        //     "premiumPayment": "http://localhost:4200/remoteEntry.js",
-
-        // },
+        remotes: {
+            "insuranceDetails": "insuranceDetails@http://localhost:4201/remoteEntry.js",
+            "premiumPayment": "premiumPayment@http://localhost:4202/remoteEntry.js",
+        },
 
         shared: share({
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
