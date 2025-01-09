@@ -11,11 +11,12 @@ sharedMappings.register(
 module.exports = {
   output: {
     uniqueName: "premiumPayment",
-    publicPath: "auto"
+    publicPath: "auto",
+    scriptType: "text/javascript"
   },
   optimization: {
     runtimeChunk: false
-  },   
+  },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
@@ -26,15 +27,16 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-        library: { type: "module" },
+        // No need for now
+        // library: { type: "module" },
 
         // For remotes (please adjust)
-        // name: "premiumPayment",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './projects/premium-payment/src/app/app.component.ts',
-        // },        
-        
+        name: "premiumPayment",
+        filename: "remoteEntry.js",
+        exposes: {
+            './AppModule': './projects/premium-payment/src/app/app.module.ts',
+        },
+
         // For hosts (please adjust)
         // remotes: {
         //     "insuranceDetails": "http://localhost:4201/remoteEntry.js",
@@ -43,14 +45,14 @@ module.exports = {
         // },
 
         shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
           ...sharedMappings.getDescriptors()
         })
-        
+
     }),
     sharedMappings.getPlugin()
   ],
