@@ -11,11 +11,12 @@ sharedMappings.register(
 module.exports = {
   output: {
     uniqueName: "insuranceDetails",
-    publicPath: "auto"
+    publicPath: "auto",
+    scriptType: "text/javascript"
   },
   optimization: {
     runtimeChunk: false
-  },   
+  },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
@@ -26,15 +27,16 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-        library: { type: "module" },
+        // No need for now
+        // library: { type: "module" },
 
         // For remotes (please adjust)
-        // name: "insuranceDetails",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './projects/insurance-details/src/app/app.component.ts',
-        // },        
-        
+        name: "insuranceDetails",
+        filename: "remoteEntry.js",
+        exposes: {
+            './MyPoliciesModule': './projects/insurance-details/src/app/my-policies/my-policies.module.ts',
+        },
+
         // For hosts (please adjust)
         // remotes: {
         //     "containerApp": "http://localhost:4200/remoteEntry.js",
@@ -43,14 +45,14 @@ module.exports = {
         // },
 
         shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
           ...sharedMappings.getDescriptors()
         })
-        
+
     }),
     sharedMappings.getPlugin()
   ],
