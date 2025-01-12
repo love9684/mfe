@@ -1,46 +1,64 @@
-# MonoWorkspace
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
+# Micro-Frontend Application
 
-## Development server
+This repository demonstrates a micro-frontend architecture with Angular. The project includes a base container application and two micro-frontend applications (MFEs): `insurance-details` and `premium-payment`.  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Prerequisites
 
-## Code scaffolding
+Ensure the following tools are installed on your system:  
+- [Node.js](https://nodejs.org/) (v14 or later)  
+- [Angular CLI](https://angular.io/cli)  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Getting Started  
 
-## Build
+Follow these steps to set up and run the project:  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Step 1: Clone the Repository  
+Clone this repository using the following command:  
+```bash  
+git clone https://github.com/love9684/mfe.git  
+```  
 
-## Running unit tests
+### Step 2: Install Dependencies  
+Navigate to the project folder and install the required dependencies:  
+```bash  
+cd mfe  
+npm install  
+```  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Step 3: Start the Host Application  
+Run the container application (host) using this command:  
+```bash  
+ng serve container-app -o  
+```  
 
-## Running end-to-end tests
+### Step 4: Start the First Micro-Frontend (MFE1)  
+Run the `insurance-details` micro-frontend with this command:  
+```bash  
+ng serve insurance-details -o  
+```  
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Step 5: Start the Second Micro-Frontend (MFE2)  
+Run the `premium-payment` micro-frontend using this command:  
+```bash  
+ng serve premium-payment -o  
+```  
 
-## Further help
+### Step 6: Access the Application  
+Open your browser and navigate to:  
+[http://localhost:4200](http://localhost:4200)  
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+From the dashboard, you can navigate to different links to load the corresponding MFEs.  
 
+## Project Structure  
 
-Create application
-    ng new mono-workspace --create-application=false
-    cd mono-workspace
-    ng g application container-app --routing --style=scss
-    ng g application insurance-details --routing --style=scss
-    ng g application premium-payment --routing --style=scss
+- `host-app`: The container application hosting the micro-frontends.  
+- `mfe1`: The `insurance-details` micro-frontend.  
+- `mfe2`: The `premium-payment` micro-frontend.  
 
-To run the applications
-    ng s container-app -o
-    ng s insurance-details -o
-    ng s premium-payment -o
+## License  
+This project is licensed under the [MIT License](LICENSE).  
 
-Adding Module federation to each application
-    Note - Our angular version is 16 so thats why we are using module-federation version 16
-    ng add @angular-architects/module-federation@16.0.4 --project container-app --port 4200
-    ng add @angular-architects/module-federation@16.0.4 --project insurance-details --port 4201
-    ng add @angular-architects/module-federation@16.0.4 --project premium-payment --port 4202
+---
+
+Happy coding! 🚀  
