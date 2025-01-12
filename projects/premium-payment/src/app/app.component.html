@@ -1,10 +1,31 @@
-<h1>Premium Payment - MFE App</h1>
-<div *ngIf="policyDetail">
-    <p>
+<div *ngIf="policyDetail else notFoundTemplate" class="container">
+    <p class="title">
         Click on renew button to renew the below policy
     </p>
-    <h4>{{policyDetail.policyNumber}}</h4>
-    <h4>{{policyDetail.policyHolderName}}</h4>
+    <div class="item">
+        <label for="">Policy number:</label>
+        <h4>
+            <strong>{{policyDetail.policyNumber}}</strong>
+        </h4>
+    </div>
 
-    <button>Renew</button>
+    <div class="item">
+        <label for="">Policy Holder:</label>
+        <h4>{{policyDetail.policyHolderName}}</h4>
+    </div>
+
+    <div class="item">
+        <label for="">Sum Insured:</label>
+        <h4>{{policyDetail.sumInsured | currency:'INR'}}</h4>
+    </div>
+
+    <button class="renew" routerLink="../../">Renew</button>
 </div>
+
+<ng-template #notFoundTemplate>
+    <div class="container">
+        <span class="not-found">
+            Policy not found for renewal...
+        </span>
+    </div>
+</ng-template>

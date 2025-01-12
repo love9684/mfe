@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 type PolicyDetail = {
   policyType: string;
@@ -20,9 +21,23 @@ export class AppComponent {
   title = 'premium-payment';
   policyDetail: PolicyDetail | null = null;
 
+  constructor(
+    private router: Router
+  ) {}
+
   ngOnInit(): void {
+    let data = sessionStorage.getItem('policyDetail');
+    try {
+      if (data) {
+        this.policyDetail = JSON.parse(data);
+        sessionStorage.removeItem('policyDetail');
+      }
+    } catch (error) {
+      
+    }
   }
 
-  ngOnDestroy(): void {
+  onRenew() {
+    this.router.navigateByUrl('/');
   }
 }

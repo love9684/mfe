@@ -50,10 +50,7 @@ export class MyPoliciesComponent {
   }
 
   proceedToRenew() {
-    // const event = new CustomEvent('policyNumberEvent', {
-    //   detail: { policyDetail: this.policyDetails },
-    // });
-    // window.dispatchEvent(event);
+    sessionStorage.setItem('policyDetail', JSON.stringify(this.policyDetails));
     this.router.navigate(['payment']);
   }
 }
