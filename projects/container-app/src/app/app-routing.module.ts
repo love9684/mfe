@@ -2,12 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation';
 
+// const MFE1_URL = 'http://localhost:4201';
+const MFE1_URL = 'https://nagp-insurance-details.netlify.app';
+
 const routes: Routes = [
   {
     path: 'insurance/:policyNumber', loadChildren: () => {
       return loadRemoteModule({
         remoteName: 'insuranceDetails',
-        remoteEntry: 'http://localhost:4201/remoteEntry.js',
+        remoteEntry: `${MFE1_URL}/remoteEntry.js`,
         exposedModule: './MyPoliciesModule'
       }).then(m => m.MyPoliciesModule).catch(err => console.log(err))
     }
