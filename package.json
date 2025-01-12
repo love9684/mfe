@@ -5,6 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build container-app && ng build insurance-details && ng build premium-payment",
+    "build:container-app": "ng build container-app",
+    "build:insurance-details": "ng build insurance-details",
+    "build:premium-payment": "ng build premium-payment",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"

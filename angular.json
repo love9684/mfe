@@ -145,6 +145,12 @@
 					},
 					"configurations": {
 						"production": {
+							"fileReplacements": [
+								{
+									"replace": "projects/container-app/src/environments/environment.ts",
+									"with": "projects/container-app/src/environments/environment.prod.ts"
+								}
+							],
 							"budgets": [
 								{
 									"type": "initial",

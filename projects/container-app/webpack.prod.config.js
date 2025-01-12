@@ -40,7 +40,7 @@ module.exports = {
         // For hosts (please adjust)
         remotes: {
             "insuranceDetails": "insuranceDetails@https://nagp-insurance-details.netlify.app/remoteEntry.js",
-            "premiumPayment": "premiumPayment@https://ephemeral-griffin-1609ac.netlify.app:4202/remoteEntry.js",
+            "premiumPayment": "premiumPayment@https://nagp-premium-payment.netlify.app/remoteEntry.js",
         },
 
         shared: share({
